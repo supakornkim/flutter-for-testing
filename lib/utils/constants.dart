@@ -1,0 +1,1 @@
+const baseUrlAPI = "http://localhost:8111/StockFlutterAPI/public/api/";
