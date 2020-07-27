@@ -1,1 +1,1 @@
-const baseUrlAPI = "http://localhost:8111/StockFlutterAPI/public/api/";
+const baseUrlAPI = "http://laravel-api-for-testing.herokuapp.com/api/";

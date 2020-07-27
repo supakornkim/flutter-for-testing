@@ -5,9 +5,11 @@ import 'package:device_preview/device_preview.dart';
 
 void main() {
   runApp(
-    DevicePreview(
-      builder: (context) => MyApp())
-    );
+    //DevicePreview(
+    //  builder: (context) => MyApp())
+    //);
+      MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,8 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      locale: DevicePreview.of(context).locale,
-      builder: DevicePreview.appBuilder,
+      //locale: DevicePreview.of(context).locale,
+      //builder: DevicePreview.appBuilder,
       theme: appTheme(),
       initialRoute: '/dashboard',
       routes: routes,

@@ -29,7 +29,7 @@ class _StockScreenState extends State<StockScreen> {
    return Scaffold(
        appBar: AppBar(
          automaticallyImplyLeading: true,
-         title: Text('Product List'),
+         title: Text('Product Listdd'),
          actions: <Widget>[
            InkWell(
                onTap: () {
