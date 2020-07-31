@@ -1,1 +1,1 @@
-const baseUrlAPI = "http://laravel-api-for-testing.herokuapp.com/api/";
+const baseUrlAPI = "https://laravel-api-for-testing.herokuapp.com/api/";
