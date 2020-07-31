@@ -213,8 +213,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     print(response);
                     if (response == true) {
                       print(response);
-                      Navigator.pushNamed(context, '/stockscreen');
-                      //Navigator.pop(context, true);
+                      //Navigator.pushNamed(context, '/dashboard');
+                      Navigator.pop(context, true);
                     }
                   },
                   child: Padding(

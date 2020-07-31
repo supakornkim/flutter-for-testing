@@ -34,7 +34,12 @@ class _StockScreenState extends State<StockScreen> {
          actions: <Widget>[
            InkWell(
                onTap: () {
-                 Navigator.pushNamed(context, '/addproduct');
+                 Navigator.pushNamed(
+                     context,
+                     '/addproduct'
+                 ).then((value) => setState(() {
+                   callAPI.getProducts();
+                 }));
                },
                child: Padding(
                  padding: const EdgeInsets.only(left:1, right:1),
@@ -123,7 +128,10 @@ class _StockScreenState extends State<StockScreen> {
                                 product.productImage,
                                 product.productQty.toString()
                               ),
-                            );
+                            )
+                            .then((value) => setState(() {
+                              callAPI.getProducts();
+                            }));
                           },
                           child: Text('Edit', style:TextStyle(color:Colors.blue)),
                         ),
@@ -156,7 +164,10 @@ class _StockScreenState extends State<StockScreen> {
                                           var response = await CallAPI().deleteProduct(product.id);
                                           if (response == true) {
                                             //Navigator.pushNamed(context, '/stockscreen');
-                                            Navigator.pop(context);
+                                            Navigator.pop(context, true);
+                                            setState(() {
+                                              callAPI.getProducts();
+                                            });
                                           }
                                         },
                                       ),
