@@ -155,7 +155,8 @@ class _StockScreenState extends State<StockScreen> {
                                         onPressed: () async {
                                           var response = await CallAPI().deleteProduct(product.id);
                                           if (response == true) {
-                                            Navigator.pushNamed(context, '/dashboard');
+                                            //Navigator.pushNamed(context, '/stockscreen');
+                                            Navigator.pop(context);
                                           }
                                         },
                                       ),
