@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_stock/screens/addproduct/addproduct.dart';
+import 'package:flutter_stock/screens/addproduct/editproduct.dart';
 import 'package:flutter_stock/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_stock/screens/drawer/about/about_screen.dart';
 import 'package:flutter_stock/screens/drawer/contact/contact_screen.dart';
@@ -18,4 +19,5 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder> {
   "/media_layout" : (BuildContext context) => MediaLayoutScreen(),
   "/media_query" : (BuildContext context) => MediaQueryScreen(),
   "/addproduct" : (BuildContext context) => AddProductScreen(),
+  "/editproduct" : (BuildContext context) => EditProductScreen(),
 };

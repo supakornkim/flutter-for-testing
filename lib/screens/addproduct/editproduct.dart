@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stock/models/Product.dart';
 import 'package:flutter_stock/services/rest_api.dart';
 
-class AddProductScreen extends StatefulWidget {
-  AddProductScreen({Key key}) : super(key: key);
-
+class EditProductScreen extends StatefulWidget {
   @override
-  _AddProductScreenState createState() => _AddProductScreenState();
+  _EditProductScreenState createState() => _EditProductScreenState();
 }
 
-class _AddProductScreenState extends State<AddProductScreen> {
-
+class _EditProductScreenState extends State<EditProductScreen> {
   final formKey = GlobalKey<FormState>();
   String productName, productDetail, productBarcode, productQty, productImage;
 
@@ -186,16 +183,16 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 child: productQtyText(),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: RaisedButton(
-                  onPressed:() async {
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: RaisedButton(
+                    onPressed:() async {
 
-                    if (formKey.currentState.validate()){
-                      formKey.currentState.save();
-                      print('validation pass');
-                      print('productname = $productName, productdetail=$productDetail');
-                    }
-                    Product productdata = new Product(
+                      if (formKey.currentState.validate()){
+                        formKey.currentState.save();
+                        print('validation pass');
+                        print('productname = $productName, productdetail=$productDetail');
+                      }
+                      Product productdata = new Product(
                         productName:productName,
                         productDetail:productDetail,
                         productBarcode:productBarcode,
@@ -206,21 +203,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         productStatus: 1,
                         createdAt:new DateTime.now(),
                         updatedAt:new DateTime.now(),
-                    );
+                      );
 
-                    print(productdata);
-                    var response = await CallAPI().createProduct(productdata);
-                    print(response);
-                    if (response == true){
+                      print(productdata);
+                      var response = await CallAPI().createProduct(productdata);
                       print(response);
-                      Navigator.pushNamed(context, '/dashboard');
-                    }
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('submit'),
-                  ),
-                )
+                      if (response == true){
+                        print(response);
+                        Navigator.pushNamed(context, '/dashboard');
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('submit'),
+                    ),
+                  )
               )
             ],
           ),

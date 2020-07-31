@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_stock/utils/constants.dart';
 import 'package:flutter_stock/models/Product.dart';
 
+
 class CallAPI {
 
   _setHeaders() => {
@@ -40,7 +41,7 @@ class CallAPI {
         headers: _setHeaders(),
         body: productToJson(data)
     );
-
+    //print(productToJson(data));
     if(response.statusCode == 200){
       return true;
     }else{
@@ -56,6 +57,7 @@ class CallAPI {
       headers: _setHeaders(),
       body: productToJson(data),
     );
+
     if (response.statusCode == 200) {
       return true;
     } else {
