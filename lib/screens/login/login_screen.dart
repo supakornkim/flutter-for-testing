@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 70),
           child: Text(
-            'My App',
+            'My Starter App',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
