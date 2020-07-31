@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stock/screens/addproduct/editproduct.dart';
 import 'package:flutter_stock/services/rest_api.dart';
 import 'package:flutter_stock/models/Product.dart';
 
@@ -111,14 +112,57 @@ class _StockScreenState extends State<StockScreen> {
                           color: Colors.green,
                           onPressed: (){
                             print('tab on edit');
-
+                            Navigator.pushNamed(
+                              context,
+                              '/editproduct',
+                              arguments: ScreenArguments(
+                                product.id.toString(),
+                                product.productName,
+                                product.productDetail,
+                                product.productBarcode,
+                                product.productImage,
+                                product.productQty.toString()
+                              ),
+                            );
                           },
                           child: Text('Edit', style:TextStyle(color:Colors.blue)),
                         ),
                         FlatButton(
-                          onPressed: (){
-                            print('tab on deleet');
-
+                          onPressed: () {
+                              return showDialog<void>(
+                                context: context,
+                                barrierDismissible: false, // user must tap button!
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('AlertDialog Title'),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: <Widget>[
+                                          Text('This is a demo alert dialog.'),
+                                          Text('Would you like to confirm?'),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text('No'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      FlatButton(
+                                        child: Text('Yes'),
+                                        onPressed: () async {
+                                          var response = await CallAPI().deleteProduct(product.id);
+                                          if (response == true) {
+                                            Navigator.pushNamed(context, '/dashboard');
+                                          }
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
                           },
                           child: Text('Delete', style:TextStyle(color:Colors.red)),
                         )
@@ -132,6 +176,7 @@ class _StockScreenState extends State<StockScreen> {
         }
     );
   }
+
 }
 
 

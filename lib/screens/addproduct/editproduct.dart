@@ -12,7 +12,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
   String productName, productDetail, productBarcode, productQty, productImage;
 
   Widget productNameText(){
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     return TextFormField(
+      initialValue : args.productName,
       keyboardType: TextInputType.phone,
       autofocus: false,
       style: TextStyle(fontSize: 20, color: Colors.teal),
@@ -45,7 +47,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   Widget productDetailText(){
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     return TextFormField(
+      initialValue : args.productDetail,
       keyboardType: TextInputType.phone,
       autofocus: false,
       style: TextStyle(fontSize: 20, color: Colors.teal),
@@ -71,7 +75,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   Widget productBarcodeText(){
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     return TextFormField(
+      initialValue : args.productBarcode,
       keyboardType: TextInputType.phone,
       autofocus: false,
       style: TextStyle(fontSize: 20, color: Colors.teal),
@@ -97,7 +103,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   Widget productQtyText(){
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     return TextFormField(
+      initialValue : args.productQty,
       keyboardType: TextInputType.phone,
       autofocus: false,
       style: TextStyle(fontSize: 20, color: Colors.teal),
@@ -123,7 +131,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   Widget productImageText(){
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     return TextFormField(
+      initialValue : args.productImage,
       keyboardType: TextInputType.phone,
       autofocus: false,
       style: TextStyle(fontSize: 20, color: Colors.teal),
@@ -150,9 +160,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add new product'),
+        title: Text('Edit product'+args.id),
       ),
       body: GestureDetector(
         onTap: (){
@@ -193,6 +204,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         print('productname = $productName, productdetail=$productDetail');
                       }
                       Product productdata = new Product(
+                        id:int.parse(args.id),
                         productName:productName,
                         productDetail:productDetail,
                         productBarcode:productBarcode,
@@ -201,16 +213,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         productPrice: '8900',
                         productQty:int.parse(productQty),
                         productStatus: 1,
-                        createdAt:new DateTime.now(),
+                        //createdAt:new DateTime.now(),
                         updatedAt:new DateTime.now(),
                       );
 
                       print(productdata);
-                      var response = await CallAPI().createProduct(productdata);
+                      var response = await CallAPI().updateProduct(productdata);
                       print(response);
                       if (response == true){
                         print(response);
-                        Navigator.pushNamed(context, '/dashboard');
+                        Navigator.pushNamed(context, '/stockscreen');
+                        //Navigator.pop(context, true);
                       }
                     },
                     child: Padding(
@@ -225,4 +238,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
       ),
     );
   }
+}
+
+class ScreenArguments {
+  final String id, productName, productDetail, productBarcode, productImage, productQty;
+
+  ScreenArguments(this.id, this.productName, this.productDetail, this.productBarcode, this.productImage, this.productQty);
 }

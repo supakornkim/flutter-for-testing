@@ -43,8 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
 
-  TextEditingController mailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController mailController = TextEditingController(text: 's@s.com');
+  TextEditingController passwordController = TextEditingController(text: '12345678');
 
   Widget _buildLogo() {
     return Row(

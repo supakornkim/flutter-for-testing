@@ -211,9 +211,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     print(productdata);
                     var response = await CallAPI().createProduct(productdata);
                     print(response);
-                    if (response == true){
+                    if (response == true) {
                       print(response);
-                      Navigator.pushNamed(context, '/dashboard');
+                      Navigator.pushNamed(context, '/stockscreen');
+                      //Navigator.pop(context, true);
                     }
                   },
                   child: Padding(
